@@ -1,0 +1,60 @@
+{
+   "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": {
+      "all": "easyrails:blocks/NewRemoteSenderBlock0"
+    }
+  },
+  "variants": {
+    "met": {
+      0: {
+        "textures": {
+          "all": "easyrails:blocks/NewRemoteSenderBlock0"
+        }
+      },
+      1: {
+        "textures": {
+          "all": "easyrails:blocks/NewRemoteSenderBlock1"
+        }
+      }
+    },
+    "in": {
+      "south": {
+        "textures": {
+          "south": "easyrails:blocks/InConnector"
+        }
+      },
+
+      "west": {
+        "textures": {
+          "west": "easyrails:blocks/InConnector"
+        }
+      },
+
+      "north": {
+        "textures": {
+          "north": "easyrails:blocks/InConnector"
+        }
+      },
+
+      "east": {
+        "textures": {
+          "east": "easyrails:blocks/InConnector"
+        }
+      },
+
+      "up": {
+        "textures": {
+          "up": "easyrails:blocks/InConnector"
+        }
+      },
+
+      "down": {
+        "textures": {
+          "down": "easyrails:blocks/InConnector"
+        }
+      }
+    }
+  }
+}

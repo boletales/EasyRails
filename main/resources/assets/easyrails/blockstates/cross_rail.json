@@ -1,0 +1,6 @@
+{
+  "variants": {
+    "shape=north_south": { "model": "easyrails:cross_rail"},
+    "shape=east_west": { "model": "easyrails:cross_rail"}
+  }
+}

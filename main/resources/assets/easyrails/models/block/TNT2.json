@@ -1,0 +1,8 @@
+{
+    "parent": "block/cube_bottom_top",
+    "textures": {
+        "bottom": "easyrails:blocks/TNT2_bottom",
+        "top": "easyrails:blocks/TNT2_top",
+        "side": "easyrails:blocks/TNT2_side"
+    }
+}

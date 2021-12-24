@@ -1,0 +1,128 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": {
+      "all": "easyrails:blocks/and_block"
+    }
+  },
+  "variants": {
+    "in": {
+      "0": { },
+      "1": { }
+    },
+    "in1": {
+      "south": {
+        "textures": {
+          "south": "easyrails:blocks/in_connector"
+        }
+      },
+
+      "west": {
+        "textures": {
+          "west": "easyrails:blocks/in_connector"
+        }
+      },
+
+      "north": {
+        "textures": {
+          "north": "easyrails:blocks/in_connector"
+        }
+      },
+
+      "east": {
+        "textures": {
+          "east": "easyrails:blocks/in_connector"
+        }
+      },
+
+      "up": {
+        "textures": {
+          "up": "easyrails:blocks/in_connector"
+        }
+      },
+
+      "down": {
+        "textures": {
+          "down": "easyrails:blocks/in_connector"
+        }
+      }
+    },
+
+    "in2": {
+      "south": {
+        "textures": {
+          "south": "easyrails:blocks/in_connector"
+        }
+      },
+
+      "west": {
+        "textures": {
+          "west": "easyrails:blocks/in_connector"
+        }
+      },
+
+      "north": {
+        "textures": {
+          "north": "easyrails:blocks/in_connector"
+        }
+      },
+
+      "east": {
+        "textures": {
+          "east": "easyrails:blocks/in_connector"
+        }
+      },
+
+      "up": {
+        "textures": {
+          "up": "easyrails:blocks/in_connector"
+        }
+      },
+
+      "down": {
+        "textures": {
+          "down": "easyrails:blocks/in_connector"
+        }
+      }
+    },
+    
+    "out": {
+      "south": {
+        "textures": {
+          "south": "easyrails:blocks/out_connector"
+        }
+      },
+
+      "west": {
+        "textures": {
+          "west": "easyrails:blocks/out_connector"
+        }
+      },
+
+      "north": {
+        "textures": {
+          "north": "easyrails:blocks/out_connector"
+        }
+      },
+
+      "east": {
+        "textures": {
+          "east": "easyrails:blocks/out_connector"
+        }
+      },
+
+      "up": {
+        "textures": {
+          "up": "easyrails:blocks/out_connector"
+        }
+      },
+
+      "down": {
+        "textures": {
+          "down": "easyrails:blocks/out_connector"
+        }
+      }
+    }
+  }
+}

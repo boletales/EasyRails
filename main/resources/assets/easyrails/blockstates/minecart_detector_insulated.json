@@ -1,0 +1,41 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube",
+    "textures": {
+        "particle": "easyrails:blocks/minecart_detector_0",
+        "down": "easyrails:blocks/minecart_detector_0",
+        "up": "minecraft:blocks/wool_colored_white",
+        "north": "easyrails:blocks/minecart_detector_0",
+        "east": "easyrails:blocks/minecart_detector_0",
+        "south": "easyrails:blocks/minecart_detector_0",
+        "west": "easyrails:blocks/minecart_detector_0"
+    }
+  },
+  "variants": {
+    "output": {
+      0: {
+        "textures": {
+            "particle": "easyrails:blocks/minecart_detector_0",
+            "down": "easyrails:blocks/minecart_detector_0",
+            "up": "minecraft:blocks/wool_colored_white",
+            "north": "easyrails:blocks/minecart_detector_0",
+            "east": "easyrails:blocks/minecart_detector_0",
+            "south": "easyrails:blocks/minecart_detector_0",
+            "west": "easyrails:blocks/minecart_detector_0"
+        }
+      },
+      1: {
+        "textures": {
+            "particle": "easyrails:blocks/minecart_detector_1",
+            "down": "easyrails:blocks/minecart_detector_1",
+            "up": "minecraft:blocks/wool_colored_white",
+            "north": "easyrails:blocks/minecart_detector_1",
+            "east": "easyrails:blocks/minecart_detector_1",
+            "south": "easyrails:blocks/minecart_detector_1",
+            "west": "easyrails:blocks/minecart_detector_1"
+        }
+      }
+    }
+  }
+}

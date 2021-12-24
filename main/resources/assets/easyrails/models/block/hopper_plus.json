@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "easyrails:blocks/itempipe_io",
+        "side": "easyrails:blocks/hopper_plus"
+    }
+}

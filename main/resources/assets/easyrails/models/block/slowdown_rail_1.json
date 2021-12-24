@@ -1,0 +1,6 @@
+{
+    "parent": "easyrails:block/rail_flat",
+    "textures": {
+      "rail": "easyrails:blocks/slowdown_rail_1"
+    }
+}

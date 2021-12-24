@@ -1,0 +1,19 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "particle": "easyrails:blocks/minecart_detector_0",
+        "down": "easyrails:blocks/minecart_detector_0",
+        "up": "minecraft:blocks/wool_colored_white",
+        "north": "easyrails:blocks/minecart_detector_0",
+        "east": "easyrails:blocks/minecart_detector_0",
+        "south": "easyrails:blocks/minecart_detector_0",
+        "west": "easyrails:blocks/minecart_detector_0"
+    },
+    "display": {
+        "thirdperson": {
+            "rotation": [ 10, -45, 170 ],
+            "translation": [ 0, 1.5, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    }
+}

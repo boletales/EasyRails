@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal":  { "model": "easyrails:magic_stone_block" }
+    }
+}

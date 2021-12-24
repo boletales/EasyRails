@@ -1,0 +1,14 @@
+{
+    "parent": "block/cube_column",
+    "textures": {
+        "end": "easyrails:blocks/itempipe_io",
+        "side": "easyrails:blocks/minecart_killer"
+    },
+    "display": {
+        "thirdperson": {
+            "rotation": [ 10, -45, 170 ],
+            "translation": [ 0, 1.5, -2.75 ],
+            "scale": [ 0.375, 0.375, 0.375 ]
+        }
+    }
+}

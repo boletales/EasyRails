@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "plus=false,powered=false,shape=north_south": { "model": "easyrails:new_detector_0" },
+    "plus=true,powered=false,shape=north_south": { "model": "easyrails:new_detector_0" ,"y": 180},
+    "plus=false,powered=false,shape=east_west":{ "model": "easyrails:new_detector_0","y": 270 },
+    "plus=true,powered=false,shape=east_west":{ "model": "easyrails:new_detector_0" ,"y": 90},
+    "plus=false,powered=true,shape=north_south": { "model": "easyrails:new_detector_1" },
+    "plus=true,powered=true,shape=north_south": { "model": "easyrails:new_detector_1" ,"y": 180},
+    "plus=false,powered=true,shape=east_west":{ "model": "easyrails:new_detector_1","y": 270 },
+    "plus=true,powered=true,shape=east_west":{ "model": "easyrails:new_detector_1" ,"y": 90}
+  }
+}

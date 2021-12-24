@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "easyrails:blocks/magic_stone_block"
+    }
+}

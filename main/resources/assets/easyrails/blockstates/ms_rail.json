@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "powered=false,shape=north_south": { "model": "easyrails:ms_rail_0" },
+    "powered=false,shape=east_west":{ "model": "easyrails:ms_rail_0","y": 270 },
+    "powered=true,shape=north_south": { "model": "easyrails:ms_rail_1" },
+    "powered=true,shape=east_west":{ "model": "easyrails:ms_rail_1","y": 270 }
+  }
+}

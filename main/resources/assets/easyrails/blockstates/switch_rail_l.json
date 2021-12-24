@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "plus=false,powered=false,shape=north_south": { "model": "easyrails:switch_rail_l_n" ,"y": 0},
+    "plus=true,powered=false,shape=north_south" : { "model": "easyrails:switch_rail_l_n" ,"y": 180},
+    "plus=false,powered=false,shape=east_west"  : { "model": "easyrails:switch_rail_l_n","y": 270 },
+    "plus=true,powered=false,shape=east_west"   : { "model": "easyrails:switch_rail_l_n" ,"y": 90},
+    "plus=false,powered=true,shape=north_south" : { "model": "easyrails:switch_rail_l" ,"y": 0},
+    "plus=true,powered=true,shape=north_south"  : { "model": "easyrails:switch_rail_l" ,"y": 180},
+    "plus=false,powered=true,shape=east_west"   : { "model": "easyrails:switch_rail_l","y": 270 },
+    "plus=true,powered=true,shape=east_west"    : { "model": "easyrails:switch_rail_l" ,"y": 90}
+  }
+}

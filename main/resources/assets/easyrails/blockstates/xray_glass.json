@@ -1,0 +1,5 @@
+{
+    "variants": {
+        "normal":  { "model": "easyrails:xray_glass" }
+    }
+}

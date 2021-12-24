@@ -1,0 +1,7 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "easyrails:blocks/RemoteBlock150"
+        //"all": "blocks/glass"
+    }
+}

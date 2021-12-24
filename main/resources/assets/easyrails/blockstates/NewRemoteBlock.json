@@ -1,0 +1,23 @@
+{
+   "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": {
+      "all": "easyrails:blocks/NewRemoteBlock0"
+    }
+  },
+  "variants": {
+    "met": {
+      0: {
+        "textures": {
+          "all": "easyrails:blocks/NewRemoteBlock0"
+        }
+      },
+      1: {
+        "textures": {
+          "all": "easyrails:blocks/NewRemoteBlock1" 
+        }
+      }
+    }
+  }
+}

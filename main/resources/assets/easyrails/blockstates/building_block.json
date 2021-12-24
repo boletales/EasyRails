@@ -1,0 +1,12 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_all",
+    "textures": {
+      "all": "easyrails:blocks/building_block"
+    }
+  },
+  "variants": {
+    "normal": [{}]
+  }
+}
