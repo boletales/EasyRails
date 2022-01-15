@@ -8,7 +8,7 @@ public class ItemMStoneSword extends ItemSword {
 	public ItemMStoneSword(ToolMaterial toolMaterial) {
 		super(toolMaterial);
 		this.setUnlocalizedName("MStoneSword");
-		this.setCreativeTab(CreativeTabs.TOOLS);
+		this.setCreativeTab(CreativeTabs.COMBAT);
 	}
 
 }

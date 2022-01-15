@@ -508,7 +508,7 @@ public class EasyRails {
 	        		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"saddle_yutori"), new ItemStack(Items.SADDLE), MagicStone,Items.LEATHER,Items.LEATHER,Items.LEATHER)		.setRegistryName("saddle_yutori"),
 
 	        		
-					new ShapedOreRecipe(new ResourceLocation(MOD_ID,"auto_lumber"),new ItemStack(MStonePickaxePlus),
+					new ShapedOreRecipe(new ResourceLocation(MOD_ID,"auto_lumber"),new ItemStack(AutoLumber),
 					                                "MMM",
 					                                "MOM",
 					                                "MMM",
