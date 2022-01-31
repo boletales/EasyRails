@@ -15,6 +15,7 @@ import net.minecraft.block.BlockRailBase.EnumRailDirection;
 import net.minecraft.block.BlockRailPowered;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
@@ -113,7 +114,7 @@ public abstract class EntityNewMinecart extends EntityMinecart{
     public AxisAlignedBB getCollisionBox(Entity entityIn)
     {
         if (getCollisionHandler() != null) return getCollisionHandler().getCollisionBox(this, entityIn);
-        if(entityIn==null || !(entityIn instanceof EntityPlayer)){
+        if(entityIn==null || !(entityIn instanceof EntityPlayer || (EasyRails.colideEachOther && entityIn instanceof EntityNewMinecart))){
         	return null;
         }
         return !entityIn.isRiding() ? entityIn.getEntityBoundingBox() : null;
@@ -485,6 +486,212 @@ public abstract class EntityNewMinecart extends EntityMinecart{
 		}
 	}
 
+    @SuppressWarnings("incomplete-switch")
+    protected void moveAlongTrack(BlockPos pos, IBlockState state)
+    {
+        this.fallDistance = 0.0F;
+        Vec3d vec3d = this.getPos(this.posX, this.posY, this.posZ);
+        this.posY = (double)pos.getY();
+        boolean flag = false;
+        boolean flag1 = false;
+        BlockRailBase blockrailbase = (BlockRailBase)state.getBlock();
+
+        if (blockrailbase == Blocks.GOLDEN_RAIL)
+        {
+            flag = ((Boolean)state.getValue(BlockRailPowered.POWERED)).booleanValue();
+            flag1 = !flag;
+        }
+
+        double slopeAdjustment = getSlopeAdjustment();
+        BlockRailBase.EnumRailDirection blockrailbase$enumraildirection = blockrailbase.getRailDirection(world, pos, state, this);
+
+        switch (blockrailbase$enumraildirection)
+        {
+            case ASCENDING_EAST:
+                this.motionX -= slopeAdjustment;
+                ++this.posY;
+                break;
+            case ASCENDING_WEST:
+                this.motionX += slopeAdjustment;
+                ++this.posY;
+                break;
+            case ASCENDING_NORTH:
+                this.motionZ += slopeAdjustment;
+                ++this.posY;
+                break;
+            case ASCENDING_SOUTH:
+                this.motionZ -= slopeAdjustment;
+                ++this.posY;
+        }
+
+        final int[][][] MATRIX = new int[][][] {{{0, 0, -1}, {0, 0, 1}}, {{ -1, 0, 0}, {1, 0, 0}}, {{ -1, -1, 0}, {1, 0, 0}}, {{ -1, 0, 0}, {1, -1, 0}}, {{0, 0, -1}, {0, -1, 1}}, {{0, -1, -1}, {0, 0, 1}}, {{0, 0, 1}, {1, 0, 0}}, {{0, 0, 1}, { -1, 0, 0}}, {{0, 0, -1}, { -1, 0, 0}}, {{0, 0, -1}, {1, 0, 0}}};
+        int[][] aint = MATRIX[blockrailbase$enumraildirection.getMetadata()];
+        double d1 = (double)(aint[1][0] - aint[0][0]);
+        double d2 = (double)(aint[1][2] - aint[0][2]);
+        double d3 = Math.sqrt(d1 * d1 + d2 * d2);
+        double d4 = this.motionX * d1 + this.motionZ * d2;
+
+        if (d4 < 0.0D)
+        {
+            d1 = -d1;
+            d2 = -d2;
+        }
+
+        double d5 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+        if (d5 > this.getMaxSpeed())
+        {
+            d5 = this.getMaxSpeed();
+        }
+
+        this.motionX = d5 * d1 / d3;
+        this.motionZ = d5 * d2 / d3;
+        Entity entity = this.getPassengers().isEmpty() ? null : (Entity)this.getPassengers().get(0);
+
+        if (entity instanceof EntityLivingBase)
+        {
+            double d6 = (double)((EntityLivingBase)entity).moveForward;
+
+            if (d6 > 0.0D)
+            {
+                double d7 = -Math.sin((double)(entity.rotationYaw * 0.017453292F));
+                double d8 = Math.cos((double)(entity.rotationYaw * 0.017453292F));
+                double d9 = this.motionX * this.motionX + this.motionZ * this.motionZ;
+
+                if (d9 < 0.01D)
+                {
+                    this.motionX += d7 * 0.1D;
+                    this.motionZ += d8 * 0.1D;
+                    flag1 = false;
+                }
+            }
+        }
+
+        if (flag1 && shouldDoRailFunctions())
+        {
+            double d17 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+            if (d17 < 0.03D)
+            {
+                this.motionX *= 0.0D;
+                this.motionY *= 0.0D;
+                this.motionZ *= 0.0D;
+            }
+            else
+            {
+                this.motionX *= 0.5D;
+                this.motionY *= 0.0D;
+                this.motionZ *= 0.5D;
+            }
+        }
+
+        double d18 = (double)pos.getX() + 0.5D + (double)aint[0][0] * 0.5D;
+        double d19 = (double)pos.getZ() + 0.5D + (double)aint[0][2] * 0.5D;
+        double d20 = (double)pos.getX() + 0.5D + (double)aint[1][0] * 0.5D;
+        double d21 = (double)pos.getZ() + 0.5D + (double)aint[1][2] * 0.5D;
+        d1 = d20 - d18;
+        d2 = d21 - d19;
+        double d10;
+
+        if (d1 == 0.0D)
+        {
+            this.posX = (double)pos.getX() + 0.5D;
+            d10 = this.posZ - (double)pos.getZ();
+        }
+        else if (d2 == 0.0D)
+        {
+            this.posZ = (double)pos.getZ() + 0.5D;
+            d10 = this.posX - (double)pos.getX();
+        }
+        else
+        {
+            double d11 = this.posX - d18;
+            double d12 = this.posZ - d19;
+            d10 = (d11 * d1 + d12 * d2) * 2.0D;
+        }
+
+        this.posX = d18 + d1 * d10;
+        this.posZ = d19 + d2 * d10;
+        this.setPosition(this.posX, this.posY, this.posZ);
+        this.moveMinecartOnRail(pos);
+
+        if (aint[0][1] != 0 && MathHelper.floor(this.posX) - pos.getX() == aint[0][0] && MathHelper.floor(this.posZ) - pos.getZ() == aint[0][2])
+        {
+            this.setPosition(this.posX, this.posY + (double)aint[0][1], this.posZ);
+        }
+        else if (aint[1][1] != 0 && MathHelper.floor(this.posX) - pos.getX() == aint[1][0] && MathHelper.floor(this.posZ) - pos.getZ() == aint[1][2])
+        {
+            this.setPosition(this.posX, this.posY + (double)aint[1][1], this.posZ);
+        }
+
+        this.applyDrag();
+        Vec3d vec3d1 = this.getPos(this.posX, this.posY, this.posZ);
+
+        if (vec3d1 != null && vec3d != null)
+        {
+            double d14 = (vec3d.y - vec3d1.y) * 0.05D;
+            d5 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+            if (d5 > 0.0D)
+            {
+                this.motionX = this.motionX / d5 * (d5 + d14);
+                this.motionZ = this.motionZ / d5 * (d5 + d14);
+            }
+
+            this.setPosition(this.posX, vec3d1.y, this.posZ);
+        }
+
+        int j = MathHelper.floor(this.posX);
+        int i = MathHelper.floor(this.posZ);
+
+        if (j != pos.getX() || i != pos.getZ())
+        {
+            d5 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+            this.motionX = d5 * (double)(j - pos.getX());
+            this.motionZ = d5 * (double)(i - pos.getZ());
+        }
+
+
+        if(shouldDoRailFunctions())
+        {
+            ((BlockRailBase)state.getBlock()).onMinecartPass(world, this, pos);
+        }
+
+        if (flag && shouldDoRailFunctions())
+        {
+            double d15 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
+
+            if (d15 > 0.01D)
+            {
+                double d16 = 0.06D;
+                this.motionX += this.motionX / d15 * 0.06D;
+                this.motionZ += this.motionZ / d15 * 0.06D;
+            }
+            else if (blockrailbase$enumraildirection == BlockRailBase.EnumRailDirection.EAST_WEST)
+            {
+                if (this.world.getBlockState(pos.west()).isNormalCube())
+                {
+                    this.motionX = 0.02D;
+                }
+                else if (this.world.getBlockState(pos.east()).isNormalCube())
+                {
+                    this.motionX = -0.02D;
+                }
+            }
+            else if (blockrailbase$enumraildirection == BlockRailBase.EnumRailDirection.NORTH_SOUTH)
+            {
+                if (this.world.getBlockState(pos.north()).isNormalCube())
+                {
+                    this.motionZ = 0.02D;
+                }
+                else if (this.world.getBlockState(pos.south()).isNormalCube())
+                {
+                    this.motionZ = -0.02D;
+                }
+            }
+        }
+    }
+    
 	public void moveMinecartOnRail(BlockPos pos)
     {
 		//Console.println(this.getHorizontalFacing());
@@ -507,7 +714,7 @@ public abstract class EntityNewMinecart extends EntityMinecart{
         //Console.println(facing);
         double max = distance>mergin ? maxLow + (maxHigh-maxLow)*((double)(distance-mergin)/(double)(seek-mergin)) : maxLow;
 		if(swich){
-	        if(EasyRails.debug)Console.println(this.motionX*this.motionX+this.motionZ*this.motionZ+","+swich+","+this.mukix*this.getMaxSpeed()+","+this.mukiz*this.getMaxSpeed());
+	        //if(EasyRails.debug)Console.println(this.motionX*this.motionX+this.motionZ*this.motionZ+","+swich+","+this.mukix*this.getMaxSpeed()+","+this.mukiz*this.getMaxSpeed());
 	        double d15 = Math.sqrt(this.motionX * this.motionX + this.motionZ * this.motionZ);
 
             if (d15 > 0)
@@ -516,14 +723,16 @@ public abstract class EntityNewMinecart extends EntityMinecart{
             	if(d15<this.getMaxSpeedFromLevel(0)){
                     d16 = 3D;
             	}else{
-                    d16 = 0.2D;
+                  d16 = 0.2D;
             	}
+                if(EasyRails.debug)Console.println("before:"+this.motionZ);
                 this.motionX += this.motionX / d15 * d16;
                 this.motionZ += this.motionZ / d15 * d16;
                 double _max = max;
                 //double _max = this.getMaxSpeed();
                 this.motionX = MathHelper.clamp(this.motionX, -_max, _max);
                 this.motionZ = MathHelper.clamp(this.motionZ, -_max, _max);
+                if(EasyRails.debug)Console.println("after :"+this.motionZ);
             }
 		}else{
 

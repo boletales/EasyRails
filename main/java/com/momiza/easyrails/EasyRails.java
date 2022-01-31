@@ -12,12 +12,14 @@ import com.momiza.easyrails.minecarts.ItemNewMinecartChest;
 import com.momiza.easyrails.minecarts.RenderNewMinecart;
 import com.momiza.easyrails.otherblocks.BlockBuilding;
 import com.momiza.easyrails.otherblocks.BlockBuildingLight;
+import com.momiza.easyrails.otherblocks.BlockCharcoal;
 import com.momiza.easyrails.otherblocks.BlockDarkGlass;
 import com.momiza.easyrails.otherblocks.BlockHyperGlass;
 import com.momiza.easyrails.otherblocks.BlockMachineBase;
 import com.momiza.easyrails.otherblocks.BlockMagicStone;
 import com.momiza.easyrails.otherblocks.BlockSolidGlass;
 import com.momiza.easyrails.otherblocks.BlockXrayGlass;
+import com.momiza.easyrails.otherblocks.ItemBlockCharcoal;
 import com.momiza.easyrails.rails.BlockConverterRail;
 import com.momiza.easyrails.rails.BlockCrossRail;
 import com.momiza.easyrails.rails.BlockDepartureRail;
@@ -142,6 +144,7 @@ public class EasyRails {
 	public static Block CrossRail;
 	public static Block ConverterRail;
     public static Block LilyRail;
+	public static Block CharcoalBlock;
 	public static Block BuildingBlock;
 	public static Block BuildingLight;
 	public static Block MinecartDetector;
@@ -188,6 +191,8 @@ public class EasyRails {
 	public static float lowspeed=1.0f;
 	public static int longrepeaterMult=10;
 	public static boolean allowYutoriRecipe=true;
+	public static boolean colideEachOther=false;
+	
 	
 	public static String lumberingBlocksStr,plantingBlocksStr;
 	public static ArrayList<Block> lumberingBlocks = new ArrayList<Block>();
@@ -237,6 +242,7 @@ public class EasyRails {
 			highspeed = (float)cfg.get("minecart", "highspeed", 6.0f).getDouble();
 			midspeed  = (float)cfg.get("minecart", "midspeed", 3.0f).getDouble();
 			lowspeed  = (float)cfg.get("minecart", "lowspeed", 1.0f).getDouble();
+			colideEachOther  = (boolean)cfg.get("minecart", "colideeachother", false).getBoolean();
 			allowYutoriRecipe  = (boolean)cfg.get("recipe", "arrowyutori", true).getBoolean();
 			lumberingBlocksStr = (String) cfg.get("autolumber", "cutting" , "minecraft:log, minecraft:log2, minecraft:leaves, minecraft:leaves2").getString();
 			plantingBlocksStr  = (String) cfg.get("autolumber", "planting", "minecraft:sapling").getString();
@@ -266,6 +272,7 @@ public class EasyRails {
 		CrossRail = new BlockCrossRail()				.setRegistryName("cross_rail");
 		ConverterRail = new BlockConverterRail()		.setRegistryName("converter_rail");
 		LilyRail = new BlockLilyRail()					.setRegistryName("lily_rail");
+		CharcoalBlock = new BlockCharcoal()				.setRegistryName("charcoal_block");
 		BuildingBlock = new BlockBuilding()				.setRegistryName("building_block");
 		BuildingLight = new BlockBuildingLight()		.setRegistryName("building_light");
 		MinecartDetector = new BlockMinecartDetector()	.setRegistryName("minecart_detector");
@@ -322,6 +329,7 @@ public class EasyRails {
         		CrossRail,
         		ConverterRail,
         		LilyRail,
+        		CharcoalBlock,
         		BuildingBlock,
         		BuildingLight,
         		MinecartDetector,
@@ -360,6 +368,7 @@ public class EasyRails {
         		new ItemBlock(CrossRail)        .setRegistryName(MOD_ID, "cross_rail"),
         		new ItemBlock(ConverterRail)    .setRegistryName(MOD_ID, "converter_rail"),
         		new ItemBlockLilyRail(LilyRail) .setRegistryName(MOD_ID, "lily_rail"),
+        		new ItemBlockCharcoal(CharcoalBlock)    .setRegistryName(MOD_ID, "charcoal_block"),
         		new ItemBlock(BuildingBlock)    .setRegistryName(MOD_ID, "building_block"),
         		new ItemBlock(BuildingLight)    .setRegistryName(MOD_ID, "building_light"),
         		new ItemBlock(MinecartDetector) .setRegistryName(MOD_ID, "minecart_detector"),
@@ -405,7 +414,8 @@ public class EasyRails {
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"redstone3"), new ItemStack(Redstone3), Items.REDSTONE, Items.REDSTONE, Items.REDSTONE)								.setRegistryName("redstone3"),
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"redstone_block_alt"), new ItemStack(Blocks.REDSTONE_BLOCK), Redstone3, Redstone3, Redstone3)						.setRegistryName("redstone_block_alt"),
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"redstone3_rev"), new ItemStack(Items.REDSTONE,3), Redstone3)														.setRegistryName("redstone3_rev"),
-        		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"magicstone"), new ItemStack(MagicStone), Items.IRON_INGOT,new ItemStack(Items.COAL,1,32767),Blocks.REDSTONE_BLOCK)	.setRegistryName("magicstone"),
+        		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"magicstone"), new ItemStack(MagicStone), Items.IRON_INGOT,Blocks.COAL_BLOCK,Items.REDSTONE)	.setRegistryName("magicstone"),
+        		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"magicstone"), new ItemStack(MagicStone), Items.IRON_INGOT,CharcoalBlock,Items.REDSTONE)	.setRegistryName("magicstonech"),
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"cross_rail"), new ItemStack(CrossRail), Blocks.RAIL,Blocks.RAIL)													.setRegistryName("cross_rail"),
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"switch_rail_conv"), new ItemStack(SwitchRailL), SwitchRailR)														.setRegistryName("switch_rail_l_conv"),
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"switch_rail_conv"), new ItemStack(SwitchRailR), SwitchRailL)														.setRegistryName("switch_rail_r_conv"),
@@ -444,6 +454,12 @@ public class EasyRails {
 				                            "MMM",
 				                            "MMM",
 				                        'M',MagicStone)   .setRegistryName("magic_stone_pack"),
+
+				new ShapedOreRecipe(new ResourceLocation(MOD_ID,"charcoal_pack"), new ItemStack(CharcoalBlock,1),
+				                            "CCC",
+				                            "CCC",
+				                            "CCC",
+				                        'C',new ItemStack(Items.COAL, 1, 1))   .setRegistryName("charcoal_pack"),
 				
 				new ShapedOreRecipe(new ResourceLocation(MOD_ID,"machine_base"),new ItemStack(MachineBase,16),
 				                            "IGI",
@@ -644,6 +660,7 @@ public class EasyRails {
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(LogicBlock), 0, new ModelResourceLocation(MOD_ID + ":" + "logic_block", "inventory"));
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(AndBlock), 0, new ModelResourceLocation(MOD_ID + ":" + "and_block", "inventory"));
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(OrBlock), 0, new ModelResourceLocation(MOD_ID + ":" + "or_block", "inventory"));
+			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(CharcoalBlock), 0, new ModelResourceLocation(MOD_ID + ":" + "charcoal_block", "inventory"));
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BuildingBlock), 0, new ModelResourceLocation(MOD_ID + ":" + "building_block", "inventory"));
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(BuildingLight), 0, new ModelResourceLocation(MOD_ID + ":" + "building_light", "inventory"));
 			ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MinecartDetector), 0, new ModelResourceLocation(MOD_ID + ":" + "minecart_detector", "inventory"));
