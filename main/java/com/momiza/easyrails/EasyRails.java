@@ -433,7 +433,7 @@ public class EasyRails {
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"and_or_conv"), new ItemStack(AndBlock), OrBlock)																	.setRegistryName("and_block_conv"),
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"and_or_conv"), new ItemStack(OrBlock), AndBlock)																	.setRegistryName("or_block_conv"),
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"minecart_detector"), new ItemStack(MinecartDetector), MachineBase,Blocks.WOODEN_PRESSURE_PLATE)						.setRegistryName("minecart_detector_w"),
-        		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"minecart_detector"), new ItemStack(MinecartDetector), MachineBase,Blocks.STONE_PRESSURE_PLATE)						.setRegistryName("minecart_detector_w"),
+        		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"minecart_detector"), new ItemStack(MinecartDetector), MachineBase,Blocks.STONE_PRESSURE_PLATE)						.setRegistryName("minecart_detector_s"),
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"minecart_detector_insulated"), new ItemStack(MinecartDetectorInsulated), MinecartDetector,new ItemStack(Blocks.CARPET,1,32767))	.setRegistryName("minecart_detector_insulated"),
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"hopper_plus"), new ItemStack(HopperPlus), MachineBase,Items.IRON_INGOT)												.setRegistryName("hopper_plus"),
         		new ShapelessOreRecipe(new ResourceLocation(MOD_ID,"loader"), new ItemStack(Loader), HopperPlus,Blocks.WOODEN_PRESSURE_PLATE)											.setRegistryName("loader_w"),
