@@ -4,8 +4,8 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 public class ItemInController extends Item {
 
-	public ItemInController() {
-		super();
+    public ItemInController() {
+        super();
         setCreativeTab(CreativeTabs.REDSTONE);
     }
 

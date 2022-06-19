@@ -24,39 +24,39 @@ public class BlockAutoLumber extends BlockContainer {
     public BlockAutoLumber()
     {
         super(new Material(MapColor.IRON));
-		setHardness(1.0F);
-		setResistance(10.0F);
+        setHardness(1.0F);
+        setResistance(10.0F);
         this.setDefaultState(this.blockState.getBaseState());
-		setCreativeTab(CreativeTabs.REDSTONE);
-		setSoundType(SoundType.METAL);
+        setCreativeTab(CreativeTabs.REDSTONE);
+        setSoundType(SoundType.METAL);
     }
 
 
-	@Override
-	public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state){
-		//worldIn.scheduleBlockUpdate(pos, this, 1, 1);
-		worldIn.updateBlockTick(pos, this, 1, 0);
-	}
-
-	@Override
-	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand){
-		worldIn.updateBlockTick(pos, this, 1, 0);
-		((TileEntityAutoLumber)worldIn.getTileEntity(pos)).update();
-	}
+    @Override
+    public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state){
+        //worldIn.scheduleBlockUpdate(pos, this, 1, 1);
+        worldIn.updateBlockTick(pos, this, 1, 0);
+    }
 
     @Override
-	public boolean canSustainPlant(IBlockState state,IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
-		return true;
-	}
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand){
+        worldIn.updateBlockTick(pos, this, 1, 0);
+        ((TileEntityAutoLumber)worldIn.getTileEntity(pos)).update();
+    }
+
+    @Override
+    public boolean canSustainPlant(IBlockState state,IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+        return true;
+    }
 
 
-	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta) {
-		return new TileEntityAutoLumber();
-	}
+    @Override
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileEntityAutoLumber();
+    }
 
 
-	@Override
+    @Override
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.MODEL;

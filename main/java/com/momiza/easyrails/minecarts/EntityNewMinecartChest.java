@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 public class EntityNewMinecartChest extends EntityNewMinecartContainer
 {
-	//public static Item newMinecartChest = new ItemNewMinecartChest(EnumMinecart.Type.CHEST);
+    //public static Item newMinecartChest = new ItemNewMinecartChest(EnumMinecart.Type.CHEST);
     /**
      * When set to true, the minecart will drop all items when setDead() is called. When false (such as when travelling
      * dimensions) it preserves its contents.
@@ -28,17 +28,17 @@ public class EntityNewMinecartChest extends EntityNewMinecartContainer
     public boolean dropContentsWhenDead = true;
     
 
-	public EntityNewMinecartChest(World worldIn,double x,double y,double z,int color)
-	{
-		super(worldIn,x,y,z,color);
-	}
+    public EntityNewMinecartChest(World worldIn,double x,double y,double z,int color)
+    {
+        super(worldIn,x,y,z,color);
+    }
 
-	public EntityNewMinecartChest(World worldIn)
-	{
-		super(worldIn);
+    public EntityNewMinecartChest(World worldIn)
+    {
+        super(worldIn);
 
-	}
-	
+    }
+    
     public static void registerFixesMinecartChest(DataFixer fixer)
     {
         EntityMinecartContainer.addDataFixers(fixer, EntityMinecartChest.class);
@@ -46,7 +46,7 @@ public class EntityNewMinecartChest extends EntityNewMinecartContainer
     
     @Override
     public ItemStack getCartItem() {
-    	return ((ItemNewMinecartChest)EasyRails.ItemNewMinecartChest).genStack(1,this.color);
+        return ((ItemNewMinecartChest)EasyRails.ItemNewMinecartChest).genStack(1,this.color);
     }
         
     /**
@@ -84,7 +84,7 @@ public class EntityNewMinecartChest extends EntityNewMinecartContainer
     }
 
     @Override
-	public String getShortName(){
-		return "§"+Integer.toHexString(this.color)+"□□";
-	}
+    public String getShortName(){
+        return "§"+Integer.toHexString(this.color)+"□□";
+    }
 }

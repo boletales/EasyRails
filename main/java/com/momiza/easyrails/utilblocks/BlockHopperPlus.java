@@ -44,12 +44,12 @@ public class BlockHopperPlus extends BlockContainer
 
     public BlockHopperPlus()
     {
-		super(Material.IRON);
-		setHardness(1.0F);
-		setResistance(10.0F);
+        super(Material.IRON);
+        setHardness(1.0F);
+        setResistance(10.0F);
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.DOWN).withProperty(ENABLED, Boolean.valueOf(true)));
-		setCreativeTab(CreativeTabs.REDSTONE);
-		setSoundType(SoundType.METAL);
+        setCreativeTab(CreativeTabs.REDSTONE);
+        setSoundType(SoundType.METAL);
     }
 
     /**
@@ -59,7 +59,7 @@ public class BlockHopperPlus extends BlockContainer
     @Override
     public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
     {
-		worldIn.updateBlockTick(pos, this, 1, 0);
+        worldIn.updateBlockTick(pos, this, 1, 0);
         EnumFacing enumfacing =  EasyRails.INSTANCE.pipeOpposite ? facing : facing.getOpposite();
         return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(ENABLED, Boolean.valueOf(true));
     }
@@ -126,10 +126,10 @@ public class BlockHopperPlus extends BlockContainer
         //this.updateState(worldIn, pos, state);
     }
 
-	@Override
+    @Override
     public boolean canPlaceBlockAt(World WorldIn, BlockPos pos){
-		return true;
-	}
+        return true;
+    }
 
     private void updateState(World worldIn, BlockPos pos, IBlockState state)
     {
@@ -237,7 +237,7 @@ public class BlockHopperPlus extends BlockContainer
     {
         return false;
     }
-	@Override
+    @Override
     public EnumBlockRenderType getRenderType(IBlockState state)
     {
         return EnumBlockRenderType.MODEL;
@@ -248,8 +248,8 @@ public class BlockHopperPlus extends BlockContainer
     {
         return BlockRenderLayer.CUTOUT;
     }
-	@Override
-	public boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
+    @Override
+    public boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {
         return false;
     }

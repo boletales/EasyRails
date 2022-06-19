@@ -25,32 +25,32 @@ import net.minecraft.world.World;
 public class BlockNewDetector extends BlockRailBase {
 
     @Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
-    	if (!worldIn.isRemote)
+    public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+        if (!worldIn.isRemote)
         {
-    		boolean tmp=false;
-    		boolean plus=state.getValue(PLUS);
-    		boolean isX=state.getValue(SHAPE)==EnumRailDirection.EAST_WEST;
-    		if(isX) {
-        		if(entityIn.motionX>0 && plus){
-        			tmp=true;
-        		}else if(entityIn.motionX<0 && !plus){
-        			tmp=true;
-        		}
-    		}else {
-        		if(entityIn.motionZ>0 && plus){
-        			tmp=true;
-        		}else if(entityIn.motionZ<0 && !plus){
-        			tmp=true;
-        		}
-    		}
+            boolean tmp=false;
+            boolean plus=state.getValue(PLUS);
+            boolean isX=state.getValue(SHAPE)==EnumRailDirection.EAST_WEST;
+            if(isX) {
+                if(entityIn.motionX>0 && plus){
+                    tmp=true;
+                }else if(entityIn.motionX<0 && !plus){
+                    tmp=true;
+                }
+            }else {
+                if(entityIn.motionZ>0 && plus){
+                    tmp=true;
+                }else if(entityIn.motionZ<0 && !plus){
+                    tmp=true;
+                }
+            }
 
             if (!((Boolean)state.getValue(POWERED)).booleanValue() && tmp)
             {
                 this.updatePoweredState(worldIn, pos, state);
             }
         }
-	}
+    }
     private void updatePoweredState(World worldIn, BlockPos pos, IBlockState state)
     {
         boolean flag = ((Boolean)state.getValue(POWERED)).booleanValue();
@@ -111,15 +111,15 @@ public class BlockNewDetector extends BlockRailBase {
             this.updatePoweredState(worldIn, pos, state);
         }
     }
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,EnumHand hand,EnumFacing side, float hitX, float hitY, float hitZ) {
-		if((playerIn.isSneaking())||(playerIn.getHeldItem(hand)!=null && (playerIn.getHeldItem(hand).getItem()==EasyRails.InController||playerIn.getHeldItem(hand).getItem()==EasyRails.OutController))){
-			worldIn.setBlockState(pos, state.withProperty(PLUS, !state.getValue(PLUS)));
-			return true;
-		}
-		return false;
-	}
-	public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,EnumHand hand,EnumFacing side, float hitX, float hitY, float hitZ) {
+        if((playerIn.isSneaking())||(playerIn.getHeldItem(hand)!=null && (playerIn.getHeldItem(hand).getItem()==EasyRails.InController||playerIn.getHeldItem(hand).getItem()==EasyRails.OutController))){
+            worldIn.setBlockState(pos, state.withProperty(PLUS, !state.getValue(PLUS)));
+            return true;
+        }
+        return false;
+    }
+    public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
     {
         public boolean apply(BlockRailBase.EnumRailDirection p_apply_1_)
         {
@@ -129,12 +129,12 @@ public class BlockNewDetector extends BlockRailBase {
     public static final PropertyBool POWERED = PropertyBool.create("powered");
     public static final PropertyBool PLUS = PropertyBool.create("plus");
 
-	public BlockNewDetector() {
-		super(false);
-		setHardness(0.7f);
-		setResistance(0.7f);
-		setUnlocalizedName("NewDetectorRail");
-	}
+    public BlockNewDetector() {
+        super(false);
+        setHardness(0.7f);
+        setResistance(0.7f);
+        setUnlocalizedName("NewDetectorRail");
+    }
 
     public IBlockState getStateFromMeta(int meta)
     {
@@ -161,10 +161,10 @@ public class BlockNewDetector extends BlockRailBase {
 
         return i;
     }
-	@Override
-	protected BlockStateContainer createBlockState() {
+    @Override
+    protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] {SHAPE, POWERED,PLUS});
-	}
+    }
 
 
     public IProperty<BlockRailBase.EnumRailDirection> getShapeProperty()

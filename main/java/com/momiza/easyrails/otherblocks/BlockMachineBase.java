@@ -21,7 +21,7 @@ public class BlockMachineBase extends net.minecraft.block.Block {
 
     @Override
     public boolean isToolEffective(String tool,IBlockState blockstate){
-    	return "pickaxe".equals(tool);
+        return "pickaxe".equals(tool);
     }
 
 
@@ -31,22 +31,22 @@ public class BlockMachineBase extends net.minecraft.block.Block {
         return BlockRenderLayer.CUTOUT;
     }
     
-	@Override
+    @Override
     public boolean isFullCube(IBlockState state)
     {
         return false;
     }
     
-	@Override
+    @Override
     public boolean isTranslucent(IBlockState state)
     {
-		return true;
+        return true;
     }
-	
-	@Override
+    
+    @Override
     public boolean isOpaqueCube(IBlockState state)
     {
-		return false;
+        return false;
     }
 
 }

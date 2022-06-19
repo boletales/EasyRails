@@ -18,16 +18,16 @@ public class BlockSolidGlass extends net.minecraft.block.BlockGlass {
         setLightLevel(0.0F);
     }
     
-	@Override
+    @Override
     public boolean isTranslucent(IBlockState state)
     {
-		return true;
+        return true;
     }
-	
-	@Override
+    
+    @Override
     public boolean isOpaqueCube(IBlockState state)
     {
-		return false;
+        return false;
     }
 
     public int quantityDropped(Random random)

@@ -14,23 +14,23 @@ import net.minecraft.world.World;
 
 public class EntityNewMinecartRidable extends EntityNewMinecart{
 
-	public EntityNewMinecartRidable(World worldIn,double x,double y,double z,int color)
-	{
-		super(worldIn,x,y,z,color);
-	}
+    public EntityNewMinecartRidable(World worldIn,double x,double y,double z,int color)
+    {
+        super(worldIn,x,y,z,color);
+    }
 
-	public EntityNewMinecartRidable(World worldIn)
-	{
-		super(worldIn);
+    public EntityNewMinecartRidable(World worldIn)
+    {
+        super(worldIn);
 
-	}
+    }
 
     @Override
     public ItemStack getCartItem() {
-    	return ((ItemNewMinecart)EasyRails.ItemNewMinecart).genStack(1,this.color);
+        return ((ItemNewMinecart)EasyRails.ItemNewMinecart).genStack(1,this.color);
     }
     
-	static void registerFixesMinecartEmpty(DataFixer fixer)
+    static void registerFixesMinecartEmpty(DataFixer fixer)
     {
         EntityMinecart.registerFixesMinecart(fixer, EntityMinecartEmpty.class);
     }

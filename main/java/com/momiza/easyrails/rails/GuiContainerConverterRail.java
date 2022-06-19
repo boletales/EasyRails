@@ -12,73 +12,73 @@ import net.minecraft.world.World;
 
 
 public class GuiContainerConverterRail extends GuiContainer {
-	private static final ResourceLocation TEXTURE = new ResourceLocation("remotemod","textures/gui/gui.png");
-	int convertTo;
-	World world;
-	BlockPos pos;
-	public GuiContainerConverterRail(Container inventorySlotsIn,World world,BlockPos pos) {
-		super(inventorySlotsIn);
-		convertTo=EasyRails.ConverterRail.getMetaFromState(world.getBlockState(pos));
-		this.world=world;
-		this.pos=pos;
-	}
+    private static final ResourceLocation TEXTURE = new ResourceLocation(EasyRails.MOD_ID,"textures/gui/gui.png");
+    int convertTo;
+    World world;
+    BlockPos pos;
+    public GuiContainerConverterRail(Container inventorySlotsIn,World world,BlockPos pos) {
+        super(inventorySlotsIn);
+        convertTo=EasyRails.ConverterRail.getMetaFromState(world.getBlockState(pos));
+        this.world=world;
+        this.pos=pos;
+    }
 
-	@Override
-	public void initGui() {
-		super.initGui();
-		for(int y=0;y<4;y++){
-			for(int x=0;x<4;x++){
-				int color = y*4+x;
-				this.buttonList.add(new GuiButton(color, 50+x*100, 50+y*50, 40, 20, buttonStr(color)));
-			}
-		}
+    @Override
+    public void initGui() {
+        super.initGui();
+        for(int y=0;y<4;y++){
+            for(int x=0;x<4;x++){
+                int color = y*4+x;
+                this.buttonList.add(new GuiButton(color, 50+x*100, 50+y*50, 40, 20, buttonStr(color)));
+            }
+        }
 
-		refreshButton();
-	}
+        refreshButton();
+    }
 
-	private String buttonStr(int color){
-		String colorStr="§"+Integer.toHexString(color);
-		return colorStr+"■ "+color+" ■ §r";
-	}
-
-
-	private void refreshButton(){
-		for(GuiButton b:this.buttonList){
-			b.enabled=true;
-		}
-		this.buttonList.get(convertTo).enabled=false;
-	}
+    private String buttonStr(int color){
+        String colorStr="§"+Integer.toHexString(color);
+        return colorStr+"■ "+color+" ■ §r";
+    }
 
 
-	public void actionPerformed(GuiButton guibutton) {
-		int color=guibutton.id;
-    	world.setBlockState(pos,((BlockConverterRail)EasyRails.ConverterRail).getStateFromMeta(color));
-		convertTo = color;
-
-		refreshButton();
-
-		PacketHandler.INSTANCE.sendToServer(new MessageConverterRail(pos.getX() , pos.getY(), pos.getZ(),color));
-	}
+    private void refreshButton(){
+        for(GuiButton b:this.buttonList){
+            b.enabled=true;
+        }
+        this.buttonList.get(convertTo).enabled=false;
+    }
 
 
-	@Override
-	public void drawScreen(int mouseX, int mouseY, float partialTicks) {
-		super.drawScreen(mouseX, mouseY, partialTicks);
-	}
+    public void actionPerformed(GuiButton guibutton) {
+        int color=guibutton.id;
+        world.setBlockState(pos,((BlockConverterRail)EasyRails.ConverterRail).getStateFromMeta(color));
+        convertTo = color;
 
-	@Override
-	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseZ) {
-		super.drawGuiContainerForegroundLayer(mouseX, mouseZ);
-	}
+        refreshButton();
+
+        PacketHandler.INSTANCE.sendToServer(new MessageConverterRail(pos.getX() , pos.getY(), pos.getZ(),color));
+    }
 
 
-	@Override
-	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		// TODO 自動生成されたメソッド・スタブ
-		super.drawDefaultBackground();
-		//this.mc.renderEngine.bindTexture(TEXTURE);
-		//this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, xSize, ySize);
-	}
+    @Override
+    public void drawScreen(int mouseX, int mouseY, float partialTicks) {
+        super.drawScreen(mouseX, mouseY, partialTicks);
+    }
+
+    @Override
+    protected void drawGuiContainerForegroundLayer(int mouseX, int mouseZ) {
+        super.drawGuiContainerForegroundLayer(mouseX, mouseZ);
+    }
+
+
+    @Override
+    protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+        // TODO 自動生成されたメソッド・スタブ
+        super.drawDefaultBackground();
+        //this.mc.renderEngine.bindTexture(TEXTURE);
+        //this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, xSize, ySize);
+    }
 
 
 }

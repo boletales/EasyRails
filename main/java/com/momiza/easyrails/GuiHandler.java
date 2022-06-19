@@ -13,14 +13,14 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 
 public class GuiHandler implements IGuiHandler {
 
-	@Override
-	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
         return new SimpleContainer(x, y, z);
-		//return null;
-	}
+        //return null;
+    }
 
-	@Override
-	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 
         if (ID == EasyRails.GUI_ID_DETECTOR) {
             return new GuiContainerDetector(new SimpleContainer(x, y, z),world.getTileEntity(new BlockPos(x,y,z)));
@@ -33,7 +33,7 @@ public class GuiHandler implements IGuiHandler {
         }else if (ID == EasyRails.GUI_ID_CONVERTERRAIL){
             return new GuiContainerConverterRail(new SimpleContainer(x, y, z),world,new BlockPos(x,y,z));
         }
-		return null;
-	}
+        return null;
+    }
 
 }

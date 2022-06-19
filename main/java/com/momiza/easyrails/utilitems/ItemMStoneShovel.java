@@ -5,10 +5,10 @@ import net.minecraft.item.ItemSpade;
 
 public class ItemMStoneShovel extends ItemSpade {
 
-	public ItemMStoneShovel(ToolMaterial toolMaterial) {
-		super(toolMaterial);
-		this.setUnlocalizedName("MStoneShovel");
-		this.setCreativeTab(CreativeTabs.TOOLS);
-	}
+    public ItemMStoneShovel(ToolMaterial toolMaterial) {
+        super(toolMaterial);
+        this.setUnlocalizedName("MStoneShovel");
+        this.setCreativeTab(CreativeTabs.TOOLS);
+    }
 
 }

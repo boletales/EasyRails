@@ -5,9 +5,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 public class ItemIOController extends Item {
-	public float efficiencyOnProperMaterial=25;
+    public float efficiencyOnProperMaterial=25;
 
-	public ItemIOController() {
+    public ItemIOController() {
         super();
     }
 

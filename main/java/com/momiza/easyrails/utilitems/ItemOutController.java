@@ -6,7 +6,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 public class ItemOutController extends Item {
 
-	public ItemOutController() {
+    public ItemOutController() {
         super();
         setCreativeTab(CreativeTabs.REDSTONE);
     }

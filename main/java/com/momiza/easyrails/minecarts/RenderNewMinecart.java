@@ -1,5 +1,7 @@
 package com.momiza.easyrails.minecarts;
 
+import com.momiza.easyrails.EasyRails;
+
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBase;
@@ -18,9 +20,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class RenderNewMinecart<T extends EntityNewMinecart> extends Render<T>
 {
-    private static final ResourceLocation MINECART_TEXTURES = new ResourceLocation("textures/entity/minecart.png");
+    private static final ResourceLocation MINECART_TEXTURES = new ResourceLocation(EasyRails.MOD_ID,"textures/entity/newminecart.png");
     /** instance of ModelMinecart for rendering */
     protected ModelBase modelMinecart = new ModelMinecart();
+    protected ModelBase modelColor    = new ModelNewMinecartColor();
 
     //private static final int[][] colors={{0,0,0},{16,0,170},{0,170,0},{0,170,170},{170,0,0},{170,0,170},{255,170,0},{170,170,170},{85,85,85},{85,85,255},{85,255,85},{85,255,255},{255,85,85},{255,85,255},{255,255,85},{255,255,255},};
     private static final int[][] colors={{32,32,32},{16,16,128},{16,128,16},{16,128,128},{128,16,16},{128,16,128},{192,144,16},{144,144,144},{96,96,96},{64,64,255},{64,255,64},{64,255,255},{255,64,64},{255,64,255},{255,255,64},{255,255,255},};
@@ -36,7 +39,7 @@ public class RenderNewMinecart<T extends EntityNewMinecart> extends Render<T>
      */
     public void doRender(T entity, double x, double y, double z, float entityYaw, float partialTicks)
     {
-    	//int[][] colors=;
+        //int[][] colors=;
         GlStateManager.pushMatrix();
         this.bindEntityTexture(entity);
         long i = (long)entity.getEntityId() * 493286711L;
@@ -119,10 +122,11 @@ public class RenderNewMinecart<T extends EntityNewMinecart> extends Render<T>
             this.bindEntityTexture(entity);
         }
 
-        int[] color=colors[((EntityNewMinecart)entity).color];
-        GlStateManager.color(color[0]/256F*1.0F, color[1]/256F*1.0F, color[2]/256F*1.0F, 1.0F);
         GlStateManager.scale(-1.0F, -1.0F, 1.0F);
         this.modelMinecart.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
+        int[] color=colors[((EntityNewMinecart)entity).color];
+        GlStateManager.color(color[0]/256F*1.5F, color[1]/256F*1.5F, color[2]/256F*1.5F, 1.0F);
+        this.modelColor.render(entity, 0.0F, 0.0F, -0.1F, 0.0F, 0.0F, 0.0625F);
         GlStateManager.popMatrix();
 
         if (this.renderOutlines)

@@ -14,12 +14,12 @@ import net.minecraft.world.World;
 
 public class BlockCrossRail extends BlockRailBase {
 
-	public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
+    public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
     {
         public boolean apply(BlockRailBase.EnumRailDirection p_apply_1_)
         {
-            return 	p_apply_1_ == BlockRailBase.EnumRailDirection.NORTH_SOUTH ||
-            		p_apply_1_ == BlockRailBase.EnumRailDirection.EAST_WEST ;
+            return     p_apply_1_ == BlockRailBase.EnumRailDirection.NORTH_SOUTH ||
+                    p_apply_1_ == BlockRailBase.EnumRailDirection.EAST_WEST ;
         }
     });
 
@@ -30,9 +30,9 @@ public class BlockCrossRail extends BlockRailBase {
     public BlockCrossRail()
     {
         super(false);
-		setHardness(0.7f);
-		setResistance(0.7f);
-		setUnlocalizedName("CrossRail");
+        setHardness(0.7f);
+        setResistance(0.7f);
+        setUnlocalizedName("CrossRail");
         this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH));
     }
     public boolean isFlexibleRail(IBlockAccess world, BlockPos pos)
@@ -67,11 +67,11 @@ public class BlockCrossRail extends BlockRailBase {
      */
     public EnumRailDirection getRailDirection(IBlockAccess world, BlockPos pos, IBlockState state, @javax.annotation.Nullable net.minecraft.entity.item.EntityMinecart cart)
     {
-    	if(cart!=null && (cart.getHorizontalFacing()==EnumFacing.EAST || cart.getHorizontalFacing()==EnumFacing.WEST)){
-    		return EnumRailDirection.NORTH_SOUTH;
-    	}else{
-        	return EnumRailDirection.EAST_WEST;
-    	}
+        if(cart!=null && (cart.getHorizontalFacing()==EnumFacing.EAST || cart.getHorizontalFacing()==EnumFacing.WEST)){
+            return EnumRailDirection.NORTH_SOUTH;
+        }else{
+            return EnumRailDirection.EAST_WEST;
+        }
     }
 
     /**

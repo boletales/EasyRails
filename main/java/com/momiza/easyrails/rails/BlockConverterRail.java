@@ -19,12 +19,12 @@ import net.minecraft.world.World;
 
 public class BlockConverterRail extends BlockRailBase implements ISlowdownRail{
 
-	public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
+    public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
     {
         public boolean apply(BlockRailBase.EnumRailDirection p_apply_1_)
         {
-            return 	p_apply_1_ == BlockRailBase.EnumRailDirection.NORTH_SOUTH ||
-            		p_apply_1_ == BlockRailBase.EnumRailDirection.EAST_WEST ;
+            return     p_apply_1_ == BlockRailBase.EnumRailDirection.NORTH_SOUTH ||
+                    p_apply_1_ == BlockRailBase.EnumRailDirection.EAST_WEST ;
         }
     });
     public static final PropertyInteger COLOR = PropertyInteger.create("color",0,15);
@@ -36,26 +36,26 @@ public class BlockConverterRail extends BlockRailBase implements ISlowdownRail{
     public BlockConverterRail()
     {
         super(false);
-		setUnlocalizedName("ConverterRail");
-		setHardness(0.7f);
-		setResistance(0.7f);
+        setUnlocalizedName("ConverterRail");
+        setHardness(0.7f);
+        setResistance(0.7f);
         this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH));
     }
 
     public void onMinecartPass(World world, net.minecraft.entity.item.EntityMinecart cart, BlockPos pos)
     {
-    	if(cart instanceof EntityNewMinecart){
-    		if(world.isBlockPowered(pos)){
-        		((EntityNewMinecart) cart).color=world.getBlockState(pos).getValue(COLOR);
-    		}
-    	}
+        if(cart instanceof EntityNewMinecart){
+            if(world.isBlockPowered(pos)){
+                ((EntityNewMinecart) cart).color=world.getBlockState(pos).getValue(COLOR);
+            }
+        }
     }
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
-		playerIn.openGui(EasyRails.INSTANCE, EasyRails.GUI_ID_CONVERTERRAIL, worldIn, pos.getX(), pos.getY(), pos.getZ());
-		return true;
-	}
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
+        playerIn.openGui(EasyRails.INSTANCE, EasyRails.GUI_ID_CONVERTERRAIL, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        return true;
+    }
     
     public boolean isFlexibleRail(IBlockAccess world, BlockPos pos)
     {
@@ -89,11 +89,11 @@ public class BlockConverterRail extends BlockRailBase implements ISlowdownRail{
      */
     public EnumRailDirection getRailDirection(IBlockAccess world, BlockPos pos, IBlockState state, @javax.annotation.Nullable net.minecraft.entity.item.EntityMinecart cart)
     {
-    	if(cart!=null && (cart.getHorizontalFacing()==EnumFacing.EAST || cart.getHorizontalFacing()==EnumFacing.WEST)){
-    		return EnumRailDirection.NORTH_SOUTH;
-    	}else{
-        	return EnumRailDirection.EAST_WEST;
-    	}
+        if(cart!=null && (cart.getHorizontalFacing()==EnumFacing.EAST || cart.getHorizontalFacing()==EnumFacing.WEST)){
+            return EnumRailDirection.NORTH_SOUTH;
+        }else{
+            return EnumRailDirection.EAST_WEST;
+        }
     }
 
     /**

@@ -14,10 +14,10 @@ import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.VanillaInventoryCodeHooks;
 
 public class HopperPlusInventoryCodeHooks extends VanillaInventoryCodeHooks {
-	@Nullable
-	public static Boolean extractHook(IHopper dest,EnumFacing enumfacing)
+    @Nullable
+    public static Boolean extractHook(IHopper dest,EnumFacing enumfacing)
     {
-		BlockPos pos = ((TileEntity)dest).getPos().offset(enumfacing);
+        BlockPos pos = ((TileEntity)dest).getPos().offset(enumfacing);
         Pair<IItemHandler, Object> itemHandlerResult = getItemHandler(dest.getWorld(), pos.getX(), pos.getY(), pos.getZ(), enumfacing.getOpposite());
         if (itemHandlerResult == null)
             return null;

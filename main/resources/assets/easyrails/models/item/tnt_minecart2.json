@@ -1,6 +1,6 @@
 {
-	"parent": "item/generated",
-	"textures": {
-		"layer0": "easyrails:items/tnt_minecart_2"
-	}
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "easyrails:items/tnt_minecart_2"
+    }
 }

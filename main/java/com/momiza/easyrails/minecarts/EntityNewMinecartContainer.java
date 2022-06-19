@@ -41,16 +41,16 @@ public abstract class EntityNewMinecartContainer extends EntityNewMinecart imple
     private ResourceLocation lootTable;
     private long lootTableSeed;
 
-	public EntityNewMinecartContainer(World worldIn,double x,double y,double z,int color)
-	{
-		super(worldIn,x,y,z,color);
-	}
+    public EntityNewMinecartContainer(World worldIn,double x,double y,double z,int color)
+    {
+        super(worldIn,x,y,z,color);
+    }
 
-	public EntityNewMinecartContainer(World worldIn)
-	{
-		super(worldIn);
+    public EntityNewMinecartContainer(World worldIn)
+    {
+        super(worldIn);
 
-	}
+    }
 
 
     public void killMinecart(DamageSource source)

@@ -17,13 +17,13 @@ import net.minecraft.item.ItemPickaxe;
 
 
 public class ItemMStoneAxe extends ItemAxe {
-	public ItemMStoneAxe(ToolMaterial toolMaterial) {
-		super(ToolMaterial.DIAMOND);
-		this.toolMaterial = toolMaterial;
+    public ItemMStoneAxe(ToolMaterial toolMaterial) {
+        super(ToolMaterial.DIAMOND);
+        this.toolMaterial = toolMaterial;
        this.setMaxDamage(toolMaterial.getMaxUses());
        this.efficiency = toolMaterial.getEfficiency();
-		this.setUnlocalizedName("MStoneAxe");
-		this.setCreativeTab(CreativeTabs.TOOLS);
-	}
+        this.setUnlocalizedName("MStoneAxe");
+        this.setCreativeTab(CreativeTabs.TOOLS);
+    }
 
 }

@@ -20,16 +20,16 @@ public class BlockDepartureRail extends BlockRailBase implements ISlowdownRail{
     public static final PropertyBool POWERED = PropertyBool.create("powered");
     public static final PropertyBool PLUS = PropertyBool.create("plus");
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand,EnumFacing side, float hitX, float hitY, float hitZ) {
-		if((playerIn.isSneaking())||(playerIn.getHeldItem(hand)!=null && (playerIn.getHeldItem(hand).getItem()==EasyRails.InController||playerIn.getHeldItem(hand).getItem()==EasyRails.OutController))){
-			worldIn.setBlockState(pos, state.withProperty(PLUS, !state.getValue(PLUS)));
-			return true;
-		}
-		return false;
-	}
-	
-	public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand,EnumFacing side, float hitX, float hitY, float hitZ) {
+        if((playerIn.isSneaking())||(playerIn.getHeldItem(hand)!=null && (playerIn.getHeldItem(hand).getItem()==EasyRails.InController||playerIn.getHeldItem(hand).getItem()==EasyRails.OutController))){
+            worldIn.setBlockState(pos, state.withProperty(PLUS, !state.getValue(PLUS)));
+            return true;
+        }
+        return false;
+    }
+    
+    public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
     {
         public boolean apply(BlockRailBase.EnumRailDirection p_apply_1_)
         {
@@ -55,16 +55,16 @@ public class BlockDepartureRail extends BlockRailBase implements ISlowdownRail{
     }
 
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-		super.onBlockAdded(worldIn, pos, state);
-    	updateState(worldIn.getBlockState(pos), worldIn, pos, this);
+        super.onBlockAdded(worldIn, pos, state);
+        updateState(worldIn.getBlockState(pos), worldIn, pos, this);
     }
 
-	public BlockDepartureRail() {
-		super(false);
-		setHardness(0.7f);
-		setResistance(0.7f);
-		setUnlocalizedName("DepartureRail");
-	}
+    public BlockDepartureRail() {
+        super(false);
+        setHardness(0.7f);
+        setResistance(0.7f);
+        setUnlocalizedName("DepartureRail");
+    }
 
     public IBlockState getStateFromMeta(int meta)
     {
@@ -91,10 +91,10 @@ public class BlockDepartureRail extends BlockRailBase implements ISlowdownRail{
 
         return i;
     }
-	@Override
-	protected BlockStateContainer createBlockState() {
+    @Override
+    protected BlockStateContainer createBlockState() {
         return new BlockStateContainer(this, new IProperty[] {SHAPE, POWERED,PLUS});
-	}
+    }
 
 
     public IProperty<BlockRailBase.EnumRailDirection> getShapeProperty()

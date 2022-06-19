@@ -1,8 +1,8 @@
 {
     "parent": "minecraft:block/iron_block",
-	 "textures": {
-	 	"all":"easyrails:blocks/NewRemoteSenderBlock0"
-	  },
+     "textures": {
+         "all":"easyrails:blocks/NewRemoteSenderBlock0"
+      },
     "display": {
         "thirdperson": {
             "rotation": [ 10, -45, 170 ],

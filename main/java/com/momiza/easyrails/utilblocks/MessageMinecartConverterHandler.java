@@ -8,11 +8,12 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 
 public class MessageMinecartConverterHandler implements IMessageHandler<MessageMinecartConverter, IMessage> {
-	public int i=0;
+    public int i=0;
     @Override//IMessageHandlerのメソッド
     public IMessage onMessage(MessageMinecartConverter message, MessageContext ctx) {
         //System.out.println(message.getX()+","+message.getY()+","+message.getZ()+":"+message.getCh());
-        World w=FMLClientHandler.instance().getServer().getEntityWorld();
+    	World w = ctx.getServerHandler().player.getEntityWorld();
+
         TileEntityMinecartConverter t=((TileEntityMinecartConverter)w.getTileEntity(new BlockPos(message.getX(),message.getY(),message.getZ())));
         t.convertTo=message.getColor();
         //w.markBlockForUpdate(new BlockPos(message.getX(),message.getY(),message.getZ()));

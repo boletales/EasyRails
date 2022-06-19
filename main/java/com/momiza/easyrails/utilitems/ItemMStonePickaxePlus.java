@@ -8,21 +8,21 @@ import net.minecraft.item.ItemStack;
 
 public class ItemMStonePickaxePlus extends ItemPickaxe {
 
-	public ItemMStonePickaxePlus(ToolMaterial toolMaterial) {
-		super(toolMaterial);
-		this.setUnlocalizedName("MStonePickaxePlus");
-		this.setCreativeTab(CreativeTabs.TOOLS);
-	}
+    public ItemMStonePickaxePlus(ToolMaterial toolMaterial) {
+        super(toolMaterial);
+        this.setUnlocalizedName("MStonePickaxePlus");
+        this.setCreativeTab(CreativeTabs.TOOLS);
+    }
 
 
-	@Override
+    @Override
     public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
-		return (state.getMaterial() == Material.SAND   ||
-				state.getMaterial() == Material.GROUND ||
-				state.getMaterial() == Material.GRASS  ||
-				state.getMaterial() == Material.IRON   ||
-				state.getMaterial() == Material.ANVIL  ||
-				state.getMaterial() == Material.ROCK)     ? this.efficiency : super.getDestroySpeed(stack, state);
+        return (state.getMaterial() == Material.SAND   ||
+                state.getMaterial() == Material.GROUND ||
+                state.getMaterial() == Material.GRASS  ||
+                state.getMaterial() == Material.IRON   ||
+                state.getMaterial() == Material.ANVIL  ||
+                state.getMaterial() == Material.ROCK)     ? this.efficiency : super.getDestroySpeed(stack, state);
     }
 }

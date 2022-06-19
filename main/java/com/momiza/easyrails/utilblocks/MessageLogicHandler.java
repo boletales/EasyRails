@@ -9,12 +9,11 @@ import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 
 public class MessageLogicHandler implements IMessageHandler<MessageLogic, IMessage> {
-	public int i=0;
+    public int i=0;
     @Override//IMessageHandlerのメソッド
     public IMessage onMessage(MessageLogic message, MessageContext ctx) {
         //System.out.println(message.getX()+","+message.getY()+","+message.getZ()+":"+message.getCh());
-    	Side side=FMLClientHandler.instance().getSide();
-        World w=FMLClientHandler.instance().getServer().getEntityWorld();
+    	World w = ctx.getServerHandler().player.getEntityWorld();
         TileEntityLogic t=((TileEntityLogic)w.getTileEntity(new BlockPos(message.getX(),message.getY(),message.getZ())));
         if(t!=null) {
             t.setIN(message.getInToggle());

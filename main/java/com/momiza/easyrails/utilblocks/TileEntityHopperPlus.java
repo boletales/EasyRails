@@ -38,7 +38,7 @@ import net.minecraft.world.World;
 
 public class TileEntityHopperPlus extends TileEntityLockableLoot implements IHopper, ITickable, IInteractionObject
 {
-	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
+    private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
     private int transferCooldown = -1;
     private long tickedGameTime;
 
@@ -85,14 +85,14 @@ public class TileEntityHopperPlus extends TileEntityLockableLoot implements IHop
         return compound;
     }
 
-	/**
-	 * For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it
-	 * hasn't changed and skip it.
-	 */
-	public void markDirty()
-	{
-		super.markDirty();
-	}
+    /**
+     * For tile entities, ensures the chunk containing the tile entity is saved to disk later - the game won't think it
+     * hasn't changed and skip it.
+     */
+    public void markDirty()
+    {
+        super.markDirty();
+    }
 
 
     /**
@@ -163,42 +163,42 @@ public class TileEntityHopperPlus extends TileEntityLockableLoot implements IHop
     
 
 
-	/**
-	 * Returns true if this thing is named
-	 */
-	public boolean hasCustomName()
-	{
-		return this.customName != null && this.customName.length() > 0;
-	}
+    /**
+     * Returns true if this thing is named
+     */
+    public boolean hasCustomName()
+    {
+        return this.customName != null && this.customName.length() > 0;
+    }
 
-	public void setCustomName(String customNameIn)
-	{
-		this.customName = customNameIn;
-	}
+    public void setCustomName(String customNameIn)
+    {
+        this.customName = customNameIn;
+    }
 
-	/**
-	 * Do not make give this method the name canInteractWith because it clashes with Container
-	 */
-	public boolean isUseableByPlayer(EntityPlayer player)
-	{
-		return true;
-	}
+    /**
+     * Do not make give this method the name canInteractWith because it clashes with Container
+     */
+    public boolean isUseableByPlayer(EntityPlayer player)
+    {
+        return true;
+    }
 
-	public void openInventory(EntityPlayer player)
-	{
-	}
+    public void openInventory(EntityPlayer player)
+    {
+    }
 
-	public void closeInventory(EntityPlayer player)
-	{
-	}
+    public void closeInventory(EntityPlayer player)
+    {
+    }
 
-	/**
-	 * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
-	 */
-	public boolean isItemValidForSlot(int index, ItemStack stack)
-	{
-		return true;
-	}
+    /**
+     * Returns true if automation is allowed to insert the given stack (ignoring stack size) into the given slot.
+     */
+    public boolean isItemValidForSlot(int index, ItemStack stack)
+    {
+        return true;
+    }
 
 
     private boolean transferItemsOut()
@@ -226,7 +226,7 @@ public class TileEntityHopperPlus extends TileEntityLockableLoot implements IHop
                     {
                         ItemStack itemstack = this.getStackInSlot(i).copy();
                         ItemStack itemstack1 = ItemStack.EMPTY;
-                    	itemstack1 = putStackInInventoryAllSlots(this, iinventory, this.decrStackSize(i, 1), enumfacing);
+                        itemstack1 = putStackInInventoryAllSlots(this, iinventory, this.decrStackSize(i, 1), enumfacing);
 
                         if (itemstack1.isEmpty())
                         {
@@ -242,7 +242,7 @@ public class TileEntityHopperPlus extends TileEntityLockableLoot implements IHop
             }
         }
     }
-	private boolean isInventoryEmpty()
+    private boolean isInventoryEmpty()
     {
         for (ItemStack itemstack : this.inventory)
         {
@@ -282,25 +282,25 @@ public class TileEntityHopperPlus extends TileEntityLockableLoot implements IHop
 
                 if (!this.isInventoryEmpty())
                 {
-                	for(int j=0;j<64;j++) {
-                		if(this.transferItemsOut()) {
-                			flag = true;
-                		}else {
-                			break;
-                		}
-                	}
+                    for(int j=0;j<64;j++) {
+                        if(this.transferItemsOut()) {
+                            flag = true;
+                        }else {
+                            break;
+                        }
+                    }
                 }
 
                 if (!this.isFull())
                 {
-                	for(int j=0;j<64;j++) {
-                		if(pullItems(this)) {
-                			flag = true;
-                		}else {
-                			break;
-                		}
-                	}
-					//for(int j=0;j<16;j++)flag |= captureDroppedItems(this,BlockHopper.getFacing(this.getBlockMetadata()).getOpposite()) || flag;
+                    for(int j=0;j<64;j++) {
+                        if(pullItems(this)) {
+                            flag = true;
+                        }else {
+                            break;
+                        }
+                    }
+                    //for(int j=0;j<16;j++)flag |= captureDroppedItems(this,BlockHopper.getFacing(this.getBlockMetadata()).getOpposite()) || flag;
                 }
 
                 if (flag)
@@ -597,7 +597,7 @@ public class TileEntityHopperPlus extends TileEntityLockableLoot implements IHop
             {
                 if (flag1 && destination instanceof TileEntityHopper)
                 {
-                	TileEntityHopperPlus tileentityhopper1 = (TileEntityHopperPlus)destination;
+                    TileEntityHopperPlus tileentityhopper1 = (TileEntityHopperPlus)destination;
 
                     if (!tileentityhopper1.mayTransfer())
                     {
@@ -638,7 +638,7 @@ public class TileEntityHopperPlus extends TileEntityLockableLoot implements IHop
      */
     public static IInventory getSourceInventory(IHopper hopper)
     {
-    	BlockPos pos =  ((TileEntity)hopper).getPos().offset(BlockHopper.getFacing(((TileEntity)hopper).getBlockMetadata()).getOpposite());
+        BlockPos pos =  ((TileEntity)hopper).getPos().offset(BlockHopper.getFacing(((TileEntity)hopper).getBlockMetadata()).getOpposite());
         return getInventoryAtPosition(hopper.getWorld(), pos.getX(), pos.getY() , pos.getZ());
     }
 

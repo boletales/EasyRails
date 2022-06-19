@@ -5,10 +5,10 @@ import net.minecraft.item.ItemHoe;
 
 public class ItemMStoneHoe extends ItemHoe {
 
-	public ItemMStoneHoe(ToolMaterial toolMaterial) {
-		super(toolMaterial);
-		this.setUnlocalizedName("MStoneHoe");
-		this.setCreativeTab(CreativeTabs.TOOLS);
-	}
+    public ItemMStoneHoe(ToolMaterial toolMaterial) {
+        super(toolMaterial);
+        this.setUnlocalizedName("MStoneHoe");
+        this.setCreativeTab(CreativeTabs.TOOLS);
+    }
 
 }

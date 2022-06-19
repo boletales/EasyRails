@@ -20,7 +20,7 @@ public class BlockMinecartConverter extends BlockHopperPlus
         super();
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.DOWN).withProperty(ENABLED, Boolean.valueOf(true)));
         this.setCreativeTab(CreativeTabs.REDSTONE);
-		this.setTickRandomly(false);
+        this.setTickRandomly(false);
     }
 
     /**
@@ -32,14 +32,14 @@ public class BlockMinecartConverter extends BlockHopperPlus
     }
 
 
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
-		playerIn.openGui(EasyRails.INSTANCE, EasyRails.GUI_ID_MINECARTCONVERTER, worldIn, pos.getX(), pos.getY(), pos.getZ());
-		return true;
-	}
+    @Override
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
+        playerIn.openGui(EasyRails.INSTANCE, EasyRails.GUI_ID_MINECARTCONVERTER, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        return true;
+    }
 
-	@Override
-	public boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
+    @Override
+    public boolean shouldCheckWeakPower(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing side)
     {
         return false;
     }

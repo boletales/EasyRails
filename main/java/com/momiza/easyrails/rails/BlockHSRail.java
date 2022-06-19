@@ -20,8 +20,8 @@ public class BlockHSRail extends BlockRailBase implements ISlowdownRail
     {
         public boolean apply(BlockRailBase.EnumRailDirection p_apply_1_)
         {
-            return 	p_apply_1_ == BlockRailBase.EnumRailDirection.NORTH_SOUTH ||
-            		p_apply_1_ == BlockRailBase.EnumRailDirection.EAST_WEST ;
+            return     p_apply_1_ == BlockRailBase.EnumRailDirection.NORTH_SOUTH ||
+                    p_apply_1_ == BlockRailBase.EnumRailDirection.EAST_WEST ;
         }
     });
     public static final PropertyBool POWERED = PropertyBool.create("powered");
@@ -29,8 +29,8 @@ public class BlockHSRail extends BlockRailBase implements ISlowdownRail
     public BlockHSRail()
     {
         super(true);
-		setHardness(0.7f);
-		setResistance(0.7f);
+        setHardness(0.7f);
+        setResistance(0.7f);
 
         setUnlocalizedName("HSRail");
         this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH).withProperty(POWERED, Boolean.valueOf(false)));
@@ -221,8 +221,8 @@ public class BlockHSRail extends BlockRailBase implements ISlowdownRail
     }
 
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-    	super.onBlockAdded(worldIn, pos, state);
-    	updateState(worldIn.getBlockState(pos), worldIn, pos, this);
+        super.onBlockAdded(worldIn, pos, state);
+        updateState(worldIn.getBlockState(pos), worldIn, pos, this);
     }
     
     protected BlockStateContainer createBlockState()
@@ -232,18 +232,18 @@ public class BlockHSRail extends BlockRailBase implements ISlowdownRail
 
     public void onMinecartPass(World world, net.minecraft.entity.item.EntityMinecart cart, BlockPos pos)
     {
-    	if(cart instanceof EntityNewMinecart){
-    		if(world.getBlockState(pos).getValue(POWERED)){
-        		((EntityNewMinecart) cart).speedLevel=2;
-    		}else{
-        		((EntityNewMinecart) cart).speedLevel=1;
-    		}
-    	}
+        if(cart instanceof EntityNewMinecart){
+            if(world.getBlockState(pos).getValue(POWERED)){
+                ((EntityNewMinecart) cart).speedLevel=2;
+            }else{
+                ((EntityNewMinecart) cart).speedLevel=1;
+            }
+        }
     }
 
-	public boolean shouldSlowdown(IBlockState state, int speedLevel) {
-		return state.getValue(POWERED)? speedLevel!=2 : speedLevel!=1;
-	}
+    public boolean shouldSlowdown(IBlockState state, int speedLevel) {
+        return state.getValue(POWERED)? speedLevel!=2 : speedLevel!=1;
+    }
     
     public boolean canMakeSlopes(IBlockAccess world, BlockPos pos)
     {

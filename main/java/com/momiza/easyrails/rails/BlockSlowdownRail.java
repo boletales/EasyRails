@@ -19,8 +19,8 @@ public class BlockSlowdownRail extends BlockRailBase implements ISlowdownRail
     {
         public boolean apply(BlockRailBase.EnumRailDirection p_apply_1_)
         {
-            return 	p_apply_1_ == BlockRailBase.EnumRailDirection.NORTH_SOUTH ||
-            		p_apply_1_ == BlockRailBase.EnumRailDirection.EAST_WEST ;
+            return     p_apply_1_ == BlockRailBase.EnumRailDirection.NORTH_SOUTH ||
+                    p_apply_1_ == BlockRailBase.EnumRailDirection.EAST_WEST ;
         }
     });
     public static final PropertyBool POWERED = PropertyBool.create("powered");
@@ -28,8 +28,8 @@ public class BlockSlowdownRail extends BlockRailBase implements ISlowdownRail
     public BlockSlowdownRail()
     {
         super(true);
-		setHardness(0.7f);
-		setResistance(0.7f);
+        setHardness(0.7f);
+        setResistance(0.7f);
 
         setUnlocalizedName("SlowdownRail");
         this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH).withProperty(POWERED, Boolean.valueOf(false)));
@@ -220,8 +220,8 @@ public class BlockSlowdownRail extends BlockRailBase implements ISlowdownRail
     }
 
     public void onBlockAdded(World worldIn, BlockPos pos, IBlockState state) {
-    	super.onBlockAdded(worldIn, pos, state);
-    	updateState(worldIn.getBlockState(pos), worldIn, pos, this);
+        super.onBlockAdded(worldIn, pos, state);
+        updateState(worldIn.getBlockState(pos), worldIn, pos, this);
     }
     
     protected BlockStateContainer createBlockState()
@@ -229,9 +229,9 @@ public class BlockSlowdownRail extends BlockRailBase implements ISlowdownRail
         return new BlockStateContainer(this, new IProperty[] {SHAPE, POWERED});
     }
 
-	public boolean shouldSlowdown(IBlockState state, int speedLevel) {
-		return state.getValue(POWERED)? false : true;
-	}
+    public boolean shouldSlowdown(IBlockState state, int speedLevel) {
+        return state.getValue(POWERED)? false : true;
+    }
     
     public boolean canMakeSlopes(IBlockAccess world, BlockPos pos)
     {

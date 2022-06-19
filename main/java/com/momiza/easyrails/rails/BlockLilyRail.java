@@ -28,23 +28,23 @@ public class BlockLilyRail extends BlockRailBase {
 
     protected static final AxisAlignedBB LILY_PAD_AABB = new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.09375D, 0.9375D);
 
-	public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
+    public static final PropertyEnum<BlockRailBase.EnumRailDirection> SHAPE = PropertyEnum.<BlockRailBase.EnumRailDirection>create("shape", BlockRailBase.EnumRailDirection.class, new Predicate<BlockRailBase.EnumRailDirection>()
     {
         public boolean apply(BlockRailBase.EnumRailDirection p_apply_1_)
         {
-            return 	p_apply_1_ != BlockRailBase.EnumRailDirection.ASCENDING_EAST &&
-            		p_apply_1_ != BlockRailBase.EnumRailDirection.ASCENDING_WEST &&
-            		p_apply_1_ != BlockRailBase.EnumRailDirection.ASCENDING_NORTH&&
-            		p_apply_1_ != BlockRailBase.EnumRailDirection.ASCENDING_SOUTH;
+            return     p_apply_1_ != BlockRailBase.EnumRailDirection.ASCENDING_EAST &&
+                    p_apply_1_ != BlockRailBase.EnumRailDirection.ASCENDING_WEST &&
+                    p_apply_1_ != BlockRailBase.EnumRailDirection.ASCENDING_NORTH&&
+                    p_apply_1_ != BlockRailBase.EnumRailDirection.ASCENDING_SOUTH;
         }
     });
 
     public BlockLilyRail()
     {
         super(false);
-		setHardness(0.7f);
-		setResistance(0.7f);
-		setUnlocalizedName("LilyRail");
+        setHardness(0.7f);
+        setResistance(0.7f);
+        setUnlocalizedName("LilyRail");
         this.setDefaultState(this.blockState.getBaseState().withProperty(SHAPE, BlockRailBase.EnumRailDirection.NORTH_SOUTH));
     }
 
@@ -174,10 +174,10 @@ public class BlockLilyRail extends BlockRailBase {
 
             if (flag && !worldIn.isAirBlock(pos))
             {
-            	if(flag2) {
+                if(flag2) {
                     this.dropBlockAsItem(worldIn, pos, state, 0);
                     worldIn.setBlockToAir(pos);
-            	}
+                }
             }
             else
             {

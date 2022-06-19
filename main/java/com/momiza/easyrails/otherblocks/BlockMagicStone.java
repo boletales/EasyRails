@@ -18,7 +18,7 @@ public class BlockMagicStone extends net.minecraft.block.Block {
 
     @Override
     public boolean isToolEffective(String tool,IBlockState blockstate){
-    	return "pickaxe".equals(tool);
+        return "pickaxe".equals(tool);
     }
 
 

@@ -5,10 +5,10 @@ import net.minecraft.item.ItemSword;
 
 public class ItemMStoneSword extends ItemSword {
 
-	public ItemMStoneSword(ToolMaterial toolMaterial) {
-		super(toolMaterial);
-		this.setUnlocalizedName("MStoneSword");
-		this.setCreativeTab(CreativeTabs.COMBAT);
-	}
+    public ItemMStoneSword(ToolMaterial toolMaterial) {
+        super(toolMaterial);
+        this.setUnlocalizedName("MStoneSword");
+        this.setCreativeTab(CreativeTabs.COMBAT);
+    }
 
 }

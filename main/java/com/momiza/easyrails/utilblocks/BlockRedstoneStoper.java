@@ -33,16 +33,16 @@ public class BlockRedstoneStoper extends BlockRedstoneRepeater{
 
     @Override
     public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable EnumFacing side) {
-    	return state.getValue(FACING) == side || state.getValue(FACING).getOpposite() == side;
+        return state.getValue(FACING) == side || state.getValue(FACING).getOpposite() == side;
     }
     
-	@Override
+    @Override
     protected int getDelay(IBlockState state)
     {
         return this.isPowered(state) ? 0 : ((Integer)state.getValue(DELAY)).intValue() * 2 * EasyRails.longrepeaterMult;
     }
 
-	@Override
+    @Override
     protected IBlockState getPoweredState(IBlockState unpoweredState)
     {
         Integer integer = (Integer)unpoweredState.getValue(DELAY);
@@ -51,7 +51,7 @@ public class BlockRedstoneStoper extends BlockRedstoneRepeater{
         return EasyRails.PoweredStoper.getDefaultState().withProperty(FACING, enumfacing).withProperty(DELAY, integer).withProperty(LOCKED, obool);
     }
 
-	@Override
+    @Override
     protected IBlockState getUnpoweredState(IBlockState poweredState)
     {
         Integer integer = (Integer)poweredState.getValue(DELAY);
@@ -60,7 +60,7 @@ public class BlockRedstoneStoper extends BlockRedstoneRepeater{
         return EasyRails.UnpoweredStoper.getDefaultState().withProperty(FACING, enumfacing).withProperty(DELAY, integer).withProperty(LOCKED, obool);
     }
 
-	@Override
+    @Override
     protected int calculateInputStrength(World worldIn, BlockPos pos, IBlockState state)
     {
         EnumFacing enumfacing = (EnumFacing)state.getValue(FACING);

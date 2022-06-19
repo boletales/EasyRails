@@ -31,16 +31,16 @@ public class BlockLongRepeater extends BlockRedstoneRepeater{
 
     @Override
     public boolean canConnectRedstone(IBlockState state, IBlockAccess world, BlockPos pos, @Nullable EnumFacing side) {
-    	return state.getValue(FACING) == side || state.getValue(FACING).getOpposite() == side;
+        return state.getValue(FACING) == side || state.getValue(FACING).getOpposite() == side;
     }
     
-	@Override
+    @Override
     protected int getDelay(IBlockState state)
     {
         return ((Integer)state.getValue(DELAY)).intValue() * 2 * EasyRails.longrepeaterMult;
     }
 
-	@Override
+    @Override
     protected IBlockState getPoweredState(IBlockState unpoweredState)
     {
         Integer integer = (Integer)unpoweredState.getValue(DELAY);
@@ -49,7 +49,7 @@ public class BlockLongRepeater extends BlockRedstoneRepeater{
         return EasyRails.PoweredLongRepeater.getDefaultState().withProperty(FACING, enumfacing).withProperty(DELAY, integer).withProperty(LOCKED, obool);
     }
 
-	@Override
+    @Override
     protected IBlockState getUnpoweredState(IBlockState poweredState)
     {
         Integer integer = (Integer)poweredState.getValue(DELAY);
